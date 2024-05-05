@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/screens/bmi_screen.dart';
 import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,16 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 Center(
                   child: RoundedButton(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const BMIScreen();
+                          },
+                        ),
+                      );
+                    },
                     title: 'Get Started',
                   ),
                 )

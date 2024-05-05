@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
@@ -12,9 +13,10 @@ class Logo extends StatelessWidget {
         Text(
           'Health ',
           style: TextStyle(
-              color: Color.fromARGB(255, 35, 116, 221),
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+            color: kBlueColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           'Pro+',
