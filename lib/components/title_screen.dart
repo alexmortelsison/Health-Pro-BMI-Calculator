@@ -1,6 +1,5 @@
+import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/const.dart';
 
 class TitleScreen extends StatelessWidget {
   final String title;
@@ -11,9 +10,14 @@ class TitleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: kTitleScreenTextStyle,
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 24,
+      ),
+      child: Text(
+        title,
+        style: kTitleScreenTextStyle,
+      ),
     );
   }
 }
