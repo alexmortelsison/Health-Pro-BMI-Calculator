@@ -172,6 +172,9 @@ class _BMIScreenState extends State<BMIScreen> {
                       });
                     },
                   ),
+                  const SizedBox(
+                    width: 12,
+                  ),
                   ReusableCard2(
                     label: 'AGE',
                     value: age,
