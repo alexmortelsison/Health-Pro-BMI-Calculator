@@ -3,9 +3,7 @@ import 'package:bmi_calculator/components/reusable_card2.dart';
 import 'package:bmi_calculator/components/rounded_button.dart';
 import 'package:bmi_calculator/components/title_screen.dart';
 import 'package:bmi_calculator/utils/const.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/profile_picture.dart';
 import '../components/reusable_card.dart';
@@ -14,6 +12,8 @@ const Color activeColor = kBlueColor;
 const Color inactiveColor = Colors.transparent;
 Gender? selectedGender;
 int height = 180;
+int weight = 60;
+int age = 18;
 
 enum Gender {
   male,
@@ -108,6 +108,7 @@ class _BMIScreenState extends State<BMIScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
@@ -158,24 +159,42 @@ class _BMIScreenState extends State<BMIScreen> {
               child: Row(
                 children: [
                   ReusableCard2(
-                    onTap: () {},
                     label: 'WEIGHT',
-                  ),
-                  const SizedBox(
-                    width: 12,
+                    value: weight,
+                    onIncrement: () {
+                      setState(() {
+                        weight++;
+                      });
+                    },
+                    onDecrement: () {
+                      setState(() {
+                        weight--;
+                      });
+                    },
                   ),
                   ReusableCard2(
-                    onTap: () {},
                     label: 'AGE',
+                    value: age,
+                    onIncrement: () {
+                      setState(() {
+                        age++;
+                      });
+                    },
+                    onDecrement: () {
+                      setState(() {
+                        age--;
+                      });
+                    },
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16,
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              child: RoundedButton(
+                onTap: () {},
+                title: 'Get BMI',
               ),
-              child: RoundedButton(onTap: () {}, title: 'Get BMI'),
             )
           ],
         ),

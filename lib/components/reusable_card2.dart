@@ -1,20 +1,31 @@
-import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ReusableCard2 extends StatelessWidget {
+import '../utils/const.dart';
+import 'round_icon_button.dart';
+
+class ReusableCard2 extends StatefulWidget {
   final String label;
-  final VoidCallback onTap;
+  final int value;
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
 
   const ReusableCard2({
     super.key,
-    required this.onTap,
     required this.label,
+    required this.value,
+    required this.onIncrement,
+    required this.onDecrement,
   });
 
   @override
+  State<ReusableCard2> createState() => _ReusableCard2State();
+}
+
+class _ReusableCard2State extends State<ReusableCard2> {
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+    return Expanded(
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
@@ -25,17 +36,36 @@ class ReusableCard2 extends StatelessWidget {
         ),
         height: 200,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                children: [
-                  Text(
-                    label,
-                    style: kPrimaryTextStyle,
-                  ),
-                ],
-              ),
+            Column(
+              children: [
+                Text(
+                  widget.label,
+                  style: kSliderTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RoundIconButton(
+                      icon: FontAwesomeIcons.minus,
+                      onTap: widget.onDecrement,
+                      increment: false,
+                    ),
+                    Text(
+                      '${widget.value}',
+                      style: kSliderTextStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                    RoundIconButton(
+                      icon: FontAwesomeIcons.plus,
+                      onTap: widget.onIncrement,
+                      increment: true,
+                    ),
+                  ],
+                )
+              ],
             ),
           ],
         ),
