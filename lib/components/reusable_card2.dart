@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../utils/const.dart';
 import 'round_icon_button.dart';
 
@@ -51,7 +50,6 @@ class _ReusableCard2State extends State<ReusableCard2> {
                     RoundIconButton(
                       icon: FontAwesomeIcons.minus,
                       onTap: widget.onDecrement,
-                      increment: false,
                     ),
                     Text(
                       '${widget.value}',
@@ -61,7 +59,6 @@ class _ReusableCard2State extends State<ReusableCard2> {
                     RoundIconButton(
                       icon: FontAwesomeIcons.plus,
                       onTap: widget.onIncrement,
-                      increment: true,
                     ),
                   ],
                 )

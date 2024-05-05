@@ -1,9 +1,6 @@
 import 'package:bmi_calculator/screens/bmi_screen.dart';
 import 'package:bmi_calculator/utils/const.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../components/logo.dart';
 import '../components/rounded_button.dart';
 

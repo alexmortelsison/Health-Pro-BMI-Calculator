@@ -5,13 +5,11 @@ import '../utils/const.dart';
 class RoundIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
-  final bool increment;
 
   const RoundIconButton({
     super.key,
     required this.icon,
     required this.onTap,
-    required this.increment,
   });
 
   @override

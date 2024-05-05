@@ -2,6 +2,8 @@ import 'package:bmi_calculator/components/logo.dart';
 import 'package:bmi_calculator/components/reusable_card2.dart';
 import 'package:bmi_calculator/components/rounded_button.dart';
 import 'package:bmi_calculator/components/title_screen.dart';
+import 'package:bmi_calculator/screens/result_page.dart';
+import 'package:bmi_calculator/screens/splash_screen.dart';
 import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -195,7 +197,16 @@ class _BMIScreenState extends State<BMIScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               child: RoundedButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ResultPage();
+                      },
+                    ),
+                  );
+                },
                 title: 'Get BMI',
               ),
             )
