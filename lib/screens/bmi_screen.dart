@@ -1,12 +1,24 @@
 import 'package:bmi_calculator/components/logo.dart';
+import 'package:bmi_calculator/components/reusable_card2.dart';
+import 'package:bmi_calculator/components/rounded_button.dart';
 import 'package:bmi_calculator/components/title_screen.dart';
 import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../components/profile_picture.dart';
+import '../components/reusable_card.dart';
+
+const Color activeColor = kBlueColor;
+const Color inactiveColor = Colors.transparent;
+Gender? selectedGender;
+int height = 180;
+
+enum Gender {
+  male,
+  female,
+}
 
 class BMIScreen extends StatefulWidget {
   const BMIScreen({super.key});
@@ -43,68 +55,127 @@ class _BMIScreenState extends State<BMIScreen> {
               title: 'BMI Calculator',
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.white,
-                              ),
-                              borderRadius: BorderRadius.circular(30)),
-                          height: 200,
-                          child: const Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(24.0),
-                                child: Icon(
-                                  size: 150,
-                                  FontAwesomeIcons.mars,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: kBlueColor,
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.white,
-                              ),
-                              borderRadius: BorderRadius.circular(30)),
-                          height: 200,
-                          child: const Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(24.0),
-                                child: Icon(
-                                  size: 150,
-                                  FontAwesomeIcons.venus,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ReusableCard(
+                      cardIcon: FontAwesomeIcons.mars,
+                      onTap: () {
+                        setState(
+                          () {
+                            selectedGender = Gender.male;
+                          },
+                        );
+                      },
+                      cardColor: selectedGender == Gender.male
+                          ? activeColor
+                          : inactiveColor,
+                    ),
                   ),
-                )
-              ],
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Expanded(
+                    child: ReusableCard(
+                      cardIcon: FontAwesomeIcons.venus,
+                      onTap: () {
+                        setState(
+                          () {
+                            selectedGender = Gender.female;
+                          },
+                        );
+                      },
+                      cardColor: selectedGender == Gender.female
+                          ? activeColor
+                          : inactiveColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Expanded(
+                child: Center(
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'HEIGHT',
+                          style: kSliderTextStyle,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '$height',
+                                style: const TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: kBlueColor,
+                                ),
+                              ),
+                              const Text(
+                                'cm',
+                                style: kSliderTextStyle,
+                              )
+                            ],
+                          ),
+                        ),
+                        Slider(
+                          min: 120.0,
+                          max: 220.0,
+                          activeColor: kBlueColor,
+                          inactiveColor:
+                              const Color.fromARGB(255, 151, 191, 224),
+                          onChanged: (value) {
+                            setState(() {
+                              height = value.round();
+                            });
+                          },
+                          value: height.toDouble(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  ReusableCard2(
+                    onTap: () {},
+                    label: 'WEIGHT',
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  ReusableCard2(
+                    onTap: () {},
+                    label: 'AGE',
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+              ),
+              child: RoundedButton(onTap: () {}, title: 'Get BMI'),
             )
           ],
         ),

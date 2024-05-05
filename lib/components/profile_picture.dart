@@ -10,6 +10,7 @@ class ProfilePicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundColor: Colors.transparent,
       radius: 24,
       backgroundImage: profilePic,
     );

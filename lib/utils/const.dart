@@ -26,3 +26,9 @@ const kTitleScreenTextStyle = TextStyle(
   color: kBlueColor,
   fontWeight: FontWeight.bold,
 );
+
+const kSliderTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 30,
+  color: Colors.white,
+);
