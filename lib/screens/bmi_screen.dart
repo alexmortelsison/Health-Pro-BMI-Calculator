@@ -1,14 +1,14 @@
-import 'package:bmi_calculator/components/logo.dart';
-import 'package:bmi_calculator/components/reusable_card2.dart';
-import 'package:bmi_calculator/components/rounded_button.dart';
-import 'package:bmi_calculator/components/title_screen.dart';
-import 'package:bmi_calculator/screens/result_page.dart';
-import 'package:bmi_calculator/screens/splash_screen.dart';
-import 'package:bmi_calculator/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../components/logo.dart';
+import '../components/reusable_card2.dart';
+import '../components/rounded_button.dart';
+import '../components/title_screen.dart';
+import '../utils/const.dart';
+import 'result_page.dart';
+import '../calculator_brain.dart';
 import '../components/profile_picture.dart';
 import '../components/reusable_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const Color activeColor = kBlueColor;
 const Color inactiveColor = Colors.transparent;
@@ -23,7 +23,9 @@ enum Gender {
 }
 
 class BMIScreen extends StatefulWidget {
-  const BMIScreen({super.key});
+  final String bmiResult; // Add the bmiResult parameter here
+
+  const BMIScreen(this.bmiResult, {super.key, required String bmi});
 
   @override
   State<BMIScreen> createState() => _BMIScreenState();
@@ -198,11 +200,19 @@ class _BMIScreenState extends State<BMIScreen> {
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               child: RoundedButton(
                 onTap: () {
+                  CalculatorBrain calc =
+                      CalculatorBrain(height: height, weight: weight);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const ResultPage();
+                        return ResultPage(
+                          bmiResult: calc.calculateBMI(),
+                          result1: calc.getResult(),
+                          result2: calc.getMessage2(),
+                          result3: calc.getMessage1(),
+                          bmi: '',
+                        );
                       },
                     ),
                   );
